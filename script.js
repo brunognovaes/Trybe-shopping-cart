@@ -128,8 +128,31 @@ function closeLoading() {
   parent.removeChild(loading);
 }
 
+function addNewCatalog(search) {
+  const url = `https://api.mercadolibre.com/sites/MLB/search?q=${search}`;
+  requestApi(url, createCatalog);
+}
+
+function clearCatalog() {
+  const catalog = document.querySelector('.items');
+  const items = document.querySelectorAll('.item');
+  items.forEach((item) => catalog.removeChild(item));
+}
+
+function searchEventListener() {
+  const searchBar = document.querySelector('#search-bar');
+  searchBar.addEventListener('keypress', (e) => {
+    if(e.keyCode === 13){
+      e.preventDefault();
+      clearCatalog();
+      addNewCatalog(searchBar.value);
+    };
+  })
+}
+
 window.onload = function onload() {
   const url = 'https://api.mercadolibre.com/sites/MLB/search?q=computador';
   requestApi(url, createCatalog)
-    .then(() => loadCartList());
+    .then(() => loadCartList())
+    .then(() => searchEventListener());
 };

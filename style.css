@@ -22,6 +22,12 @@
 #search-bar {
   margin: 7px;
   border-radius: 7px;
+  padding: 5px;
+  height: 25px;
+}
+
+#search-bar:focus {
+  outline: none;
 }
 
 .top-bar {
@@ -99,4 +105,8 @@
   flex-basis: 1;
   font-size: 16pt;
   text-align: center;
+}
+
+.price-container {
+  margin-top: 5px;
 }
