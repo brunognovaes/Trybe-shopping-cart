@@ -3,7 +3,7 @@ function totalValue() {
   const priceElement = document.querySelector('.total-price');
   if (items) {
     const price = items.reduce((acc, item) => (acc + parseFloat(item.price)), 0);
-    priceElement.innerText = price;
+    priceElement.innerText = price.toFixed(2);
   } else {
     priceElement.innerText = 0;
   } 

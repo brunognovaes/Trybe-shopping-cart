@@ -5,12 +5,14 @@
 }
 
 .header-container {
-  background-color: rgb(90, 241, 90);
+  font-family: 'Bebas Neue', cursive;
+  background-color: rgb(96,194,139);
   text-align: center;
-  font-size: xx-large;
+  font-size: 50px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
   box-shadow: 0px 1px 2px black;
 }
@@ -53,6 +55,7 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
+  font-family: 'Roboto', sans-serif;;
 }
 
 .items {
@@ -88,7 +91,7 @@
 }
 
 .item .item__add {
-  background-color: green;
+  background-color: rgb(152, 161, 152);
   border: 0;
   cursor: pointer;
   margin: 0;
@@ -109,4 +112,8 @@
 
 .price-container {
   margin-top: 5px;
+}
+
+.trybe-img {
+  width: 50px;
 }
