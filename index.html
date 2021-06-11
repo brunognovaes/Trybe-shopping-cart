@@ -6,14 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="script.js"></script>
   </head>
 
   <body>
     <header class="header">
       <div class="header-container">
+        <img class="trybe-img" src="img/Trybe.jpg" alt="cart-img-png">
         <p>Mercado Trybe</p>
+        <div class="search-container">
         <input type="text" id="search-bar" >
+        <span class="material-icons">
+          search
+          </span>
+        </div>
       </div>
       
     </header>
@@ -21,9 +32,8 @@
       <section class="items"></section>
       <section class="cart">
         <span class="cart__title">Carrinho de compras</span>
+        <ul class="cart__items"></ul>
         <button class="empty-cart">Esvaziar carrinho</button>
-        <ol class="cart__items"></ol>
-        <hr>
         <div class="price-container">
           <span>Total: R$</span>
           <span class="total-price">0</span>
