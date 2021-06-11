@@ -10,13 +10,15 @@ function totalValue() {
 }
 
 function saveCartList() {
-  const cartList = document.querySelectorAll('li.cart__item');
+  const cartList = document.querySelectorAll('.cart__item');
   if (cartList.length > 0) {
     const cartListTextArr = Array.from(cartList).reduce((acc, item) => {
-      const id = item.innerText.split('|')[0].replace('SKU:', '').trim();
-      const title = item.innerText.split('|')[1].replace('NAME:', '').trim();
-      const price = item.innerText.split('|')[2].replace('PRICE: $', '').trim();
+      const thumbnail = item.querySelector('.item__image').src;
+      const id = item.querySelector('.cart__specs').querySelector('.cart__id').innerText;
+      const title = item.querySelector('.cart__specs').querySelector('.cart__text').innerText;
+      const price = item.querySelector('.cart__specs').querySelector('.cart__price').innerText.slice(10);
       const itemObj = {
+        thumbnail,
         id,
         title,
         price,
@@ -43,8 +45,10 @@ async function requestApi(url, callback) {
   }
 }
 
-function appendElement(el, className) {
-  const parent = document.querySelector(`.${className}`);
+function appendElement(el, parent) {
+  if (typeof parent === 'string') {
+    parent = document.querySelector(`.${parent}`);
+  }
   parent.appendChild(el);
 }
 
@@ -73,10 +77,19 @@ function cartItemClickEvent(item) {
   })
 }
 
-function createCartItemElement({ id, title, price }) {
-  const elementText = `SKU: ${id} |\nNAME: ${title} |\nPRICE: $${price}`;
-  const element = createCustomElement('li', 'cart__item', elementText, cartItemClickEvent);
+function createCartItemElement({ id, title, price, thumbnail }) {
+  const elementThumbnail = createProductImageElement(thumbnail);
+  const aboutElement = createCustomElement('div', 'cart__specs', null);
+  const elementId = createCustomElement('p', 'cart__id', id);
+  const elementText = createCustomElement('p', 'cart__text', title);
+  const elementPrice = createCustomElement('p', 'cart__price', `Preço: R$ ${parseFloat(price).toFixed(2)}`);
+  const element = createCustomElement('div', 'cart__item', null, cartItemClickEvent);
 
+  appendElement(elementThumbnail, element);
+  appendElement(elementId, aboutElement);
+  appendElement(elementText, aboutElement);
+  appendElement(elementPrice, aboutElement);
+  appendElement(aboutElement, element);
   appendElement(element, 'cart__items');
   saveCartList();
 }
